@@ -72,8 +72,8 @@ angular.module('kenzanApp')
 	   	 	if(fivePence){$scope.newChange.fivePence= fivePence;}
 	   	 	if(twoPence){$scope.newChange.twoPence= twoPence;}
 	   	 	if(penny){$scope.newChange.penny= penny;}
-	   	 	
 	   	}
+	   	
 	   	console.log($scope.newChange)
 	   	$scope.coins.push($scope.newChange);
     	$scope.newChange ={};

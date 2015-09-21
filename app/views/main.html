@@ -16,18 +16,10 @@
 <div class="row marketing">
   <div class="col-md-6 col-md-offset-3">
       <h2>Getting change for : {{coin.amount}} pennies!</h2>
-      <table class="table table-bordered table-striped">
-
-        <tr>
-          <th>Coin</th>
-          <th>Amount</th>
-        </tr>
-        <tr ng-repeat="coin in coins">
-          <div ng-repeat = "(key, value) in coin">
-            <td>{{value}}</td>
-            <td>{{coin.amount}}</td>
-          </div>
-        </tr>
-      </table>
+      <div ng-repeat="coin in coins">
+        <div ng-repeat="(key, value) in coin">
+            {{key}} : {{value}}
+        </div>
+    </div>
     </div>
 </div>
