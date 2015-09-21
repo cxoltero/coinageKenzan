@@ -36,37 +36,39 @@ angular.module('kenzanApp')
     		window.alert("Please enter a valid number");
     		return;
 		};
-		$scope.totalAmount = $scope.newChange.amount;
+		// as of here we get an array as a return, now we have to check if there is a decimal point.
 
+		if($scope.newChange.amount.indexOf(".")!== -1){
+			$scope.newChange.amount = Math.round($scope.newChange.amount*100);
+		};
+		$scope.totalAmount = $scope.newChange.amount;
 	};
 
 
     $scope.makeChange = function(){
-	   	
-	   	while($scope.newChange.amount > 0){
+
+    	while($scope.newChange.amount > 0){
+    		var TwoPound = Math.floor($scope.newChange.amount/200);
+			$scope.newChange.amount %= 200;
 			var pound = Math.floor($scope.newChange.amount/100);
 			$scope.newChange.amount %= 100;
 			var fiftyPence = Math.floor($scope.newChange.amount/50);
 			$scope.newChange.amount %= 50;
-			var crown =  Math.floor($scope.newChange.amount/25);
-			$scope.newChange.amount %= 25;
-			var tenPence =  Math.floor($scope.newChange.amount/10);
-			$scope.newChange.amount %= 10;
-			var fivePence =  Math.floor($scope.newChange.amount/5);
-			$scope.newChange.amount %= 5;
+			var twenty =  Math.floor($scope.newChange.amount/20);
+			$scope.newChange.amount %= 20;
 			var twoPence =  Math.floor($scope.newChange.amount/2);
 			$scope.newChange.amount %= 2;
 			var penny =  Math.floor($scope.newChange.amount/1);
 			$scope.newChange.amount %= 1;
 			
+			if(TwoPound){$scope.newChange.TwoPound= TwoPound;}
 	   	 	if(pound){$scope.newChange.pound= pound;}
 	   	 	if(fiftyPence){$scope.newChange.fiftyPence= fiftyPence;}
-	   	 	if(crown){$scope.newChange.crown= crown;}
-	   	 	if(tenPence){$scope.newChange.tenPence= tenPence;}
-	   	 	if(fivePence){$scope.newChange.fivePence= fivePence;}
+	   	 	if(twenty){$scope.newChange.twenty= twenty;}
 	   	 	if(twoPence){$scope.newChange.twoPence= twoPence;}
 	   	 	if(penny){$scope.newChange.penny= penny;}
 	   	}
+
 
 	   	// at the end the value of amount will always be 0, so no need to print it
 	   	delete $scope.newChange.amount;
