@@ -26,6 +26,7 @@ angular.module('kenzanApp')
 	    	$scope.newChange.amount= $scope.newChange.amount.toFixed(2);
 	    	console.log("the value at check for p is :");
 	    	console.log($scope.newChange.amount);
+	    	return;
     	}
     	//check for the value to be a just a number, or to see if it includes the £ symbol and return a whole number of pennies.
     	if($scope.newChange.amount[0]=== "£"){
