@@ -2,6 +2,24 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+/* !!!!!!Content added after scaffolding!!!!!!!!!!!*/
+table{
+  width: 100%;
+  text-align: center;
+}
+td{
+  text-align: left;
+}
+.tableHeader{
+  text-align: center;
+}
+#id, #value{
+  width: 50%;
+  text-align: center;
+}
+
+
+/* !!!!!!Content added after scaffolding!!!!!!!!!!!*/
 
 .browsehappy {
   margin: 0.2em 0;
