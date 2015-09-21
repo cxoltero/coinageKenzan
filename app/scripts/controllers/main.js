@@ -24,23 +24,24 @@ angular.module('kenzanApp')
 	    	// i get a string back, so i need to turn it into a number
 	    	$scope.newChange.amount *=1;
 	    	$scope.newChange.amount= $scope.newChange.amount.toFixed(2);
-	    	console.log("the value at check for p is :");
-	    	console.log($scope.newChange.amount);
 	    	return;
     	}
     	//check for the value to be a just a number, or to see if it includes the £ symbol and return a whole number of pennies.
     	if($scope.newChange.amount[0]=== "£"){
-    		$scope.newChange.amount = $scope.newChange.amount.substr(1);
-    		$scope.newChange.amount =Math.round($scope.newChange.amount*100);
+
+    		$scope.newChange.amount = ($scope.newChange.amount.substr(1))*1;
+    		$scope.newChange.amount = Math.round($scope.newChange.amount*100);
+    		// from here we have to turn this back into a string 
+    		$scope.newChange.amount = $scope.newChange.amount.toString();
     	}
     	if(isNaN($scope.newChange.amount)){
     		window.alert("Please enter a valid number");
     		return;
 		};
 		// as of here we get an array as a return, now we have to check if there is a decimal point.
-
 		if($scope.newChange.amount.indexOf(".")!== -1){
 			$scope.newChange.amount = Math.round($scope.newChange.amount*100);
+
 		};
 		$scope.totalAmount = $scope.newChange.amount;
 	};
@@ -69,7 +70,6 @@ angular.module('kenzanApp')
 	   	 	if(twoPence){$scope.newChange.twoPence= twoPence;}
 	   	 	if(penny){$scope.newChange.penny= penny;}
 	   	}
-
 
 	   	// at the end the value of amount will always be 0, so no need to print it
 	   	delete $scope.newChange.amount;
