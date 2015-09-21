@@ -1,22 +1,17 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name kenzanApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the kenzanApp
- */
 angular.module('kenzanApp')
   .controller('MainCtrl', function ($scope) {
   	$scope.newChange = {};
 	$scope.coins = [];
 	$scope.totalAmount =0;
 
-
-    $scope.makeChange = function(){
-
-	   	// This function will check for the pennies letter and remove it
+	$scope.checkValues = function(){
+		if(typeof $scope.newChange.amount === 'undefined'){
+    		window.alert("Please enter a valid number");
+    		return;
+		};
+		// This function will check for the pennies letter and remove it
     	// this is going to give a fixed number 
     	if($scope.newChange.amount[$scope.newChange.amount.length-1] === "p"){
     		$scope.newChange.amount =$scope.newChange.amount.slice(0, -1);
@@ -26,27 +21,28 @@ angular.module('kenzanApp')
 	    		$scope.newChange.amount = $scope.newChange.amount.substr(1);
 	    		$scope.newChange.amount *= 100;
 	    	}
+	    	// i get a string back, so i need to turn it into a number
 	    	$scope.newChange.amount *=1;
 	    	$scope.newChange.amount= $scope.newChange.amount.toFixed(2);
 	    	console.log("the value at check for p is :");
 	    	console.log($scope.newChange.amount);
     	}
-
     	//check for the value to be a just a number, or to see if it includes the £ symbol and return a whole number of pennies.
     	if($scope.newChange.amount[0]=== "£"){
     		$scope.newChange.amount = $scope.newChange.amount.substr(1);
     		$scope.newChange.amount =Math.round($scope.newChange.amount*100);
     	}
-
-    	// first we have to check for invalid entries
     	if(isNaN($scope.newChange.amount)){
-        	var errorMsg = 'Please enter a valid number';
-	   		window.alert(errorMsg);
-	   		return;
-	   	}
-
+    		window.alert("Please enter a valid number");
+    		return;
+		};
 		$scope.totalAmount = $scope.newChange.amount;
 
+	};
+
+
+    $scope.makeChange = function(){
+	   	
 	   	while($scope.newChange.amount > 0){
 			var pound = Math.floor($scope.newChange.amount/100);
 			$scope.newChange.amount %= 100;
@@ -72,6 +68,7 @@ angular.module('kenzanApp')
 	   	 	if(penny){$scope.newChange.penny= penny;}
 	   	}
 
+	   	// at the end the value of amount will always be 0, so no need to print it
 	   	delete $scope.newChange.amount;
 	   	console.log($scope.newChange);
 	   	$scope.coins.push($scope.newChange);
@@ -80,3 +77,4 @@ angular.module('kenzanApp')
 
 
   });
+
