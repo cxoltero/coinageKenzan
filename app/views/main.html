@@ -1,9 +1,8 @@
 <div class="section" ng-controller="MainCtrl">
   <div class="jumbotron">
     <div class="row">
-
-      <h1>Welcome to Currency Converter</h1>
-      <h2>How many pennies would you like to trade?</h2>
+      <h1 id="pageTitle">Welcome to Currency Converter</h1>
+      <h2 class="subtitle">How many pennies would you like to trade?</h2>
       <div class="col-md-4 col-md-offset-4">
         <form>
           <!-- max input of 15 is for security reasons, a number with more than 10 digits is not safe -->
@@ -12,9 +11,7 @@
         </form>
       </div>
     </div>
-  </div>
-
-  <div class="row">
+    <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h4 class="title">Getting change for : {{totalAmount}} !</h4>
 
@@ -37,8 +34,12 @@
                 </tr>
               </table>
             </div>
+
           </div>
         </div>
     </div>
   </div>
+  </div>
+
+
 </div>

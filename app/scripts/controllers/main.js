@@ -76,7 +76,7 @@ angular.module('kenzanApp')
 	   	console.log($scope.newChange);
 	   	$scope.coins.push($scope.newChange);
     	$scope.newChange ={};
-    }
+    };
 
 
   });
