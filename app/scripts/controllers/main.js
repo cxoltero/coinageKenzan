@@ -11,11 +11,10 @@ angular.module('kenzanApp')
   .controller('MainCtrl', function ($scope) {
   	$scope.newChange = {};
 	$scope.coins = [];
+	$scope.totalAmount =0;
 
 
     $scope.makeChange = function(){
-    	$scope.totalAmount = $scope.newChange.amount;
-		console.log($scope.totalAmount);
 
 	   	// This function will check for the pennies letter and remove it
     	// this is going to give a fixed number 
@@ -46,6 +45,7 @@ angular.module('kenzanApp')
 	   		return;
 	   	}
 
+		$scope.totalAmount = $scope.newChange.amount;
 
 	   	while($scope.newChange.amount > 0){
 			var pound = Math.floor($scope.newChange.amount/100);
@@ -70,10 +70,10 @@ angular.module('kenzanApp')
 	   	 	if(fivePence){$scope.newChange.fivePence= fivePence;}
 	   	 	if(twoPence){$scope.newChange.twoPence= twoPence;}
 	   	 	if(penny){$scope.newChange.penny= penny;}
-
 	   	}
 
-	   	console.log($scope.newChange)
+	   	delete $scope.newChange.amount;
+	   	console.log($scope.newChange);
 	   	$scope.coins.push($scope.newChange);
     	$scope.newChange ={};
     }
