@@ -7,27 +7,28 @@ angular.module('kenzanApp')
 	$scope.totalAmount =0;
 
 	$scope.checkValues = function(){
-		if(typeof $scope.newChange.amount === 'undefined'){
-    		window.alert("Please enter a valid number");
+		if(typeof $scope.newChange.amount === 'undefined' || isNaN($scope.newChange.amount)){
+    		window.alert('Please enter a valid number');
     		return;
-		};
+		}
 		// This function will check for the pennies letter and remove it
     	// this is going to give a fixed number 
-    	if($scope.newChange.amount[$scope.newChange.amount.length-1] === "p"){
+    	if($scope.newChange.amount[$scope.newChange.amount.length-1] === 'p'){
     		$scope.newChange.amount =$scope.newChange.amount.slice(0, -1);
 
 			// Check is there is a £ sign at the same time as p
-		   if($scope.newChange.amount[0]=== "£"){
+		   if($scope.newChange.amount[0]=== '£'){
 	    		$scope.newChange.amount = $scope.newChange.amount.substr(1);
-	    		$scope.newChange.amount *= 100;
+	    		// $scope.newChange.amount *= 100;
 	    	}
 	    	// i get a string back, so i need to turn it into a number
 	    	$scope.newChange.amount *=1;
-	    	$scope.newChange.amount= $scope.newChange.amount.toFixed(2);
+	    	$scope.newChange.amount= $scope.newChange.amount.toFixed(2)*100;
+	    	$scope.totalAmount = $scope.newChange.amount;
 	    	return;
     	}
     	//check for the value to be a just a number, or to see if it includes the £ symbol and return a whole number of pennies.
-    	if($scope.newChange.amount[0]=== "£"){
+    	if($scope.newChange.amount[0]=== '£'){
 
     		$scope.newChange.amount = ($scope.newChange.amount.substr(1))*1;
     		$scope.newChange.amount = Math.round($scope.newChange.amount*100);
@@ -35,14 +36,14 @@ angular.module('kenzanApp')
     		$scope.newChange.amount = $scope.newChange.amount.toString();
     	}
     	if(isNaN($scope.newChange.amount)){
-    		window.alert("Please enter a valid number");
+    		window.alert('Please enter a valid number');
     		return;
-		};
+		}
 		// as of here we get an array as a return, now we have to check if there is a decimal point.
-		if($scope.newChange.amount.indexOf(".")!== -1){
+		if($scope.newChange.amount.indexOf('.')!== -1){
 			$scope.newChange.amount = Math.round($scope.newChange.amount*100);
 
-		};
+		}
 		$scope.totalAmount = $scope.newChange.amount;
 	};
 
